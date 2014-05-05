@@ -1,0 +1,11 @@
+{
+  "name": "jquery-tabs",
+  "authors": [
+    {"name": "Matt Rose", "email": "matt@mattrose.ca"}
+  ],
+  "dependencies": {
+    "jquery-boiler": "0.1.x",
+    "underscore": "1.6.x",
+    "jquery-respond": "ssh://git@stash.carpages.ca/gem/jquery-respond.git#0.1.x"
+  }
+}
