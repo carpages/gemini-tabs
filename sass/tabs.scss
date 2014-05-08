@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    $TABS
+\*------------------------------------*/
+/**
+  * @module Tabs [.tabs]
+  * @description CSS for the tab plugin
+  */
+
+.js-tab{
+  display:none;
+
+  .no-js &, &.is-active{
+    display:block;
+  }
+}
