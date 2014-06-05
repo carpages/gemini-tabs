@@ -1,19 +1,100 @@
-define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
+/**
+ * @fileoverview
+
+A jQuery plugin for tabs.
+
+### Notes
+- Here's a note
+
+### Features
+- Here's a feature
+
+ *
+ * @namespace jquery.tabs
+ * @copyright Carpages.ca 2014
+ * @author Matt Rose <matt@mattrose.ca>
+ *
+ * @requires jquery
+ * @requires jquery.boiler
+ *
+ * @prop {boolean} hash {@link jquery.tabs#hash}
+ * @prop {function} onChange {@link jquery.tabs#onChange}
+ * @prop {string} tabState {@link jquery.tabs#tabState}
+ * @prop {string} targetState {@link jquery.tabs#targetState}
+ * @prop {boolean} responsive {@link jquery.tabs#responsive}
+ *
+ * @example
+  <html>
+    <div id="js-tabs">
+      <a href="#tab-1">Tab 1</a>
+      <a href="#tab-2">Tab 2</a>
+    </div>
+    <div id="tab-1" class="tab">
+      This is Tab 1!
+    </div>
+    <div id="tab-2" class="tab">
+      This is Tab 2!
+    </div>
+  </html>
+ *
+ * @example
+  $('#js-tabs').tabs();
+ */
+define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], function($, _){
 
   $.boiler('tabs', {
     defaults: {
+      /**
+       * Whether to use hash's in the url to control the tab
+       *
+       * @name jquery.tabs#hash
+       * @type boolean
+       * @default false
+       */
       hash: false,
+      /**
+       * The callback to run when the tab changes
+       *
+       * @name jquery.tabs#onChange
+       * @type function
+       * @default false
+       */
       onChange: false,
+      /**
+       * The state to add to the active tab link
+       *
+       * @name jquery.tabs#tabState
+       * @type string
+       * @default 'is-active'
+       */
       tabState: 'is-active',
+      /**
+       * The state to add to the active tab
+       *
+       * @name jquery.tabs#targetState
+       * @type string
+       * @default 'is-active'
+       */
       targetState: 'is-active',
+      /**
+       * Whether to change to a select dropdown on small screens
+       *
+       * *Note:* This adds ``select.select--tab`` to the select container
+       *
+       * @name jquery.tabs#responsive
+       * @type boolean
+       * @default false
+       */
       responsive: false
     },
 
-    /* This will store all of the tabs
+    /*
+     * This will store all of the tabs
      * {'#target': {
      *  $tab: $Object,
      *  $target: $Object
-     * }}*/
+     * }}
+     */
     tabs: {},
 
     active: '',
@@ -63,7 +144,14 @@ define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
       if(plugin.settings.responsive) plugin._responsiveInit();
     },
 
-    // This builds a select box out of the list of anchors
+    /**
+     * Builds a select box out of the list of anchors
+     *
+     * @private
+     * @method
+     * @name jquery.tabs#_getSelect
+     * @return {element} Returns a jQuery element
+    **/
     _getSelect: function(){
       var plugin = this;
 
@@ -84,7 +172,13 @@ define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
                     .parent();
     },
 
-    // Initiate responsiveness
+    /**
+     * Initiates the responsiveness
+     *
+     * @private
+     * @method
+     * @name jquery.tabs#_responsiveInit
+    **/
     _responsiveInit: function(){
       var plugin = this;
 
@@ -121,6 +215,13 @@ define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
       });
     },
 
+    /**
+     * Open a tab
+     *
+     * @method
+     * @name jquery.tabs#open
+     * @param {string} target The id of the tab (``#example``)
+    **/
     open: function(target){
       var plugin = this;
 
@@ -132,6 +233,14 @@ define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
       }
     },
 
+    /**
+     * Activate a tab
+     *
+     * @private
+     * @method
+     * @name jquery.tabs#_activate
+     * @param {string} target The id of the tab
+    **/
     _activate: function(target){
       var plugin = this;
 
@@ -145,6 +254,14 @@ define(['jquery.boiler', 'underscore', 'jquery.respond'], function($, _){
       }
     },
 
+    /**
+     * Deactivate a tab
+     *
+     * @private
+     * @method
+     * @name jquery.tabs#_deactivate
+     * @param {string} target The id of the tab
+    **/
     _deactivate: function(target){
       var plugin = this;
 
