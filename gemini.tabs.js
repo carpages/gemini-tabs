@@ -1,27 +1,21 @@
 /**
  * @fileoverview
 
-A jQuery plugin for tabs.
-
-### Notes
-- Here's a note
-
-### Features
-- Here's a feature
+A Gemini plugin for tabs.
 
  *
- * @namespace jquery.tabs
+ * @namespace gemini.tabs
  * @copyright Carpages.ca 2014
  * @author Matt Rose <matt@mattrose.ca>
  *
- * @requires jquery
- * @requires jquery.boiler
+ * @requires gemini
+ * @requires gemini.respond
  *
- * @prop {boolean} hash {@link jquery.tabs#hash}
- * @prop {function} onChange {@link jquery.tabs#onChange}
- * @prop {string} tabState {@link jquery.tabs#tabState}
- * @prop {string} targetState {@link jquery.tabs#targetState}
- * @prop {boolean} responsive {@link jquery.tabs#responsive}
+ * @prop {boolean} hash {@link gemini.tabs#hash}
+ * @prop {function} onChange {@link gemini.tabs#onChange}
+ * @prop {string} tabState {@link gemini.tabs#tabState}
+ * @prop {string} targetState {@link gemini.tabs#targetState}
+ * @prop {boolean} responsive {@link gemini.tabs#responsive}
  *
  * @example
   <html>
@@ -38,16 +32,18 @@ A jQuery plugin for tabs.
   </html>
  *
  * @example
-  $('#js-tabs').tabs();
+  G('#js-tabs').tabs();
  */
-define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], function($, _){
+define(['gemini', 'gemini.respond'], function($){
+
+  var _ = $._;
 
   $.boiler('tabs', {
     defaults: {
       /**
        * Whether to use hash's in the url to control the tab
        *
-       * @name jquery.tabs#hash
+       * @name gemini.tabs#hash
        * @type boolean
        * @default false
        */
@@ -55,7 +51,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
       /**
        * The callback to run when the tab changes
        *
-       * @name jquery.tabs#onChange
+       * @name gemini.tabs#onChange
        * @type function
        * @default false
        */
@@ -63,7 +59,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
       /**
        * The state to add to the active tab link
        *
-       * @name jquery.tabs#tabState
+       * @name gemini.tabs#tabState
        * @type string
        * @default 'is-active'
        */
@@ -71,7 +67,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
       /**
        * The state to add to the active tab
        *
-       * @name jquery.tabs#targetState
+       * @name gemini.tabs#targetState
        * @type string
        * @default 'is-active'
        */
@@ -81,7 +77,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
        *
        * *Note:* This adds ``select.select--tab`` to the select container
        *
-       * @name jquery.tabs#responsive
+       * @name gemini.tabs#responsive
        * @type boolean
        * @default false
        */
@@ -149,7 +145,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
      *
      * @private
      * @method
-     * @name jquery.tabs#_getSelect
+     * @name gemini.tabs#_getSelect
      * @return {element} Returns a jQuery element
     **/
     _getSelect: function(){
@@ -177,7 +173,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
      *
      * @private
      * @method
-     * @name jquery.tabs#_responsiveInit
+     * @name gemini.tabs#_responsiveInit
     **/
     _responsiveInit: function(){
       var plugin = this;
@@ -219,7 +215,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
      * Open a tab
      *
      * @method
-     * @name jquery.tabs#open
+     * @name gemini.tabs#open
      * @param {string} target The id of the tab (``#example``)
     **/
     open: function(target){
@@ -238,7 +234,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
      *
      * @private
      * @method
-     * @name jquery.tabs#_activate
+     * @name gemini.tabs#_activate
      * @param {string} target The id of the tab
     **/
     _activate: function(target){
@@ -259,7 +255,7 @@ define(['jquery-loader', 'underscore', 'jquery.boiler', 'jquery.respond'], funct
      *
      * @private
      * @method
-     * @name jquery.tabs#_deactivate
+     * @name gemini.tabs#_deactivate
      * @param {string} target The id of the tab
     **/
     _deactivate: function(target){
