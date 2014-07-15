@@ -3,6 +3,11 @@
   "authors": [
     {"name": "Matt Rose", "email": "matt@mattrose.ca"}
   ],
+  "main": [
+    "gemini.tabs.js",
+    "sass/tabs.scss"
+  ],
+  "ignore": [],
   "dependencies": {
     "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git",
     "gemini-respond": "ssh://git@stash.carpages.ca/gem/gemini-respond.git"
