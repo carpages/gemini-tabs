@@ -3,9 +3,14 @@
 \*------------------------------------*/
 
 .tab{
-  display:none;
+  display: none;
 
   .no-js &, &.is-active{
-    display:block;
+    display: block;
+  }
+  @media print {
+    & {
+      display: block;
+    }
   }
 }
