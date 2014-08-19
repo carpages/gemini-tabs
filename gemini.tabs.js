@@ -154,10 +154,13 @@ define(['gemini', 'gemini.respond'], function($){
       var $select = $('<select/>');
 
       _.each(plugin.tabs, function(tab, target){
+        //Create text (remove a11y)
+        var text = tab.$tab.clone().find('.a11y').remove().end().text();
+
         $select.append(
           $('<option />')
             .val(target)
-            .text(tab.$tab.text())
+            .text(text)
             .prop('selected', tab.$tab.hasClass(plugin.settings.tabState))
         );
       });
