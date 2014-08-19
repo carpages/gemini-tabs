@@ -203,7 +203,7 @@ define(['gemini', 'gemini.respond'], function($){
       };
 
       // Init
-      adjustTabs($.respond.screen);
+      adjustTabs($.respond.getScreen());
 
       // Add listener
       $.respond.bind('resize', function(e, screen){
