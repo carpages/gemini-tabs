@@ -113,6 +113,9 @@ define(['gemini', 'gemini.respond'], function($){
         };
       });
 
+      //Initiate responsiveness
+      if(plugin.settings.responsive) plugin._responsiveInit();
+
       //Bind click events
       plugin.$el.on('click', 'a', function(e){
         e.preventDefault();
@@ -135,9 +138,6 @@ define(['gemini', 'gemini.respond'], function($){
 
       //Activate the current item and the content
       plugin.open(active);
-
-      //Initiate responsiveness
-      if(plugin.settings.responsive) plugin._responsiveInit();
     },
 
     /**
@@ -249,7 +249,13 @@ define(['gemini', 'gemini.respond'], function($){
         plugin.tabs[target].$target.show();
         plugin.active = target;
 
-        if(plugin.settings.onChange) plugin.settings.onChange.call(plugin);
+        if(plugin.settings.responsive) {
+          plugin.$select.find('select').val(target);
+        }
+
+        if(plugin.settings.onChange) {
+          plugin.settings.onChange.call(plugin);
+        }
       }
     },
 
