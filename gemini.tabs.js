@@ -131,7 +131,7 @@ define(['gemini', 'gemini.respond'], function($){
       ).attr('href');
 
       //Activate hashed tab
-      if(plugin.settings.hash && _.has(plugin.tabs, window.location.hash)){
+      if(_.has(plugin.tabs, window.location.hash)){
         plugin._deactivate(active);
         active = window.location.hash;
       }
@@ -224,8 +224,6 @@ define(['gemini', 'gemini.respond'], function($){
     open: function(target){
       var plugin = this;
 
-      if (plugin.settings.hash) window.location.hash = target;
-
       if(target!=plugin.active && _.has(plugin.tabs, target)){
         plugin._deactivate(plugin.active);
         plugin._activate(target);
@@ -244,10 +242,19 @@ define(['gemini', 'gemini.respond'], function($){
       var plugin = this;
 
       if(_.has(plugin.tabs, target)){
-        plugin.tabs[target].$tab.addClass(plugin.settings.tabState);
-        plugin.tabs[target].$target.addClass(plugin.settings.targetState);
-        plugin.tabs[target].$target.show();
+        var tab = plugin.tabs[target];
+
+        tab.$tab.addClass(plugin.settings.tabState);
+        tab.$target.addClass(plugin.settings.targetState);
+        tab.$target.show();
         plugin.active = target;
+
+        if (plugin.settings.hash) {
+          // Ensure that the browser doesn't scroll to the hash
+          tab.$target.attr('id', '');
+          window.location.hash = target;
+          tab.$target.attr('id', target.substring(1));
+        }
 
         if(plugin.settings.responsive) {
           plugin.$select.find('select').val(target);
