@@ -9,7 +9,7 @@
   ],
   "ignore": [],
   "dependencies": {
-    "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git",
-    "gemini-respond": "ssh://git@stash.carpages.ca/gem/gemini-respond.git"
+    "gemini-loader": "ssh://git@stash.carpages.ca/gem/gemini-loader.git#~0",
+    "gemini-respond": "ssh://git@stash.carpages.ca/gem/gemini-respond.git#~0"
   }
 }
