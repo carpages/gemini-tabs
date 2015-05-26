@@ -34,7 +34,25 @@ A Gemini plugin for tabs.
  * @example
   G('#js-tabs').tabs();
  */
-define(['gemini', 'gemini.respond'], function($){
+
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([
+      'gemini',
+      'gemini.respond'
+    ], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    module.exports = factory(
+      require('gemini'),
+      require('gemini.respond')
+    );
+  } else {
+    // Browser globals
+    factory(G);
+  }
+}(function($) {
 
   var _ = $._;
 
@@ -289,4 +307,4 @@ define(['gemini', 'gemini.respond'], function($){
   // This way you don't need to require both jquery and the plugin
   return $;
 
-});
+}));
