@@ -1,11 +1,20 @@
-/*------------------------------------*\
-    $TABS
-\*------------------------------------*/
+/**
+ ********************************
+ * _TABS.SCSS
+ ********************************
+ */
 
-.tab{
+/**
+ * @module Tab [.tab]
+ * @description The CSS for each tab to work with the tabs javascript module
+ *
+ * @state [.is-active] Activates the tab
+ */
+.tab {
   display: none;
 
-  .no-js &, &.is-active{
+  .no-js &,
+  &.is-active {
     display: block;
   }
   @media print {
