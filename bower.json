@@ -7,9 +7,15 @@
     "gemini.tabs.js",
     "sass/tabs.scss"
   ],
-  "ignore": [],
+  "ignore": [
+    "test"
+  ],
   "dependencies": {
     "gemini-loader": "~0",
-    "gemini-respond": "~0"
+    "gemini-respond": "~0",
+    "gemini-css": "~1"
+  },
+  "devDependencies": {
+    "requirejs": "~2.1.11"
   }
 }
