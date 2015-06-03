@@ -8,11 +8,10 @@
     "url": "http://mattrose.ca"
   },
   "main": "gemini.tabs.js",
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carpages/gemini-tabs"
+  },
   "dependencies": {
     "gemini-loader": "~0",
     "gemini-respond": "~0",
@@ -25,5 +24,6 @@
     "load-grunt-tasks": "~0.2.0",
     "time-grunt": "~0.2.3",
     "grunt-contrib-compass": "~1.0.1"
-  }
+  },
+  "licenses": "MIT"
 }
