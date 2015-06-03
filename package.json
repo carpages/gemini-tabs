@@ -1,17 +1,23 @@
 {
   "name": "gemini-tabs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Gemini Tabs",
   "author": {
     "name": "Matt Rose",
     "email": "matt@mattrose.ca",
     "url": "http://mattrose.ca"
   },
+  "main": "gemini.tabs.js",
   "licenses": [
     {
       "type": "MIT"
     }
   ],
+  "dependencies": {
+    "gemini-loader": "~0",
+    "gemini-respond": "~0",
+    "gemini-css": "~1"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.2",
