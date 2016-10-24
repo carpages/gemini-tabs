@@ -35,28 +35,27 @@ A Gemini plugin for tabs.
   G('#js-tabs').tabs();
  */
 
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
+( function( factory ) {
+  if ( typeof define === 'function' && define.amd ) {
     // AMD. Register as an anonymous module.
     define([
       'gemini',
       'gemini.respond'
-    ], factory);
-  } else if (typeof exports === 'object') {
+    ], factory );
+  } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
     module.exports = factory(
-      require('gemini'),
-      require('gemini.respond')
+      require( 'gemini' ),
+      require( 'gemini.respond' )
     );
   } else {
     // Browser globals
-    factory(G);
+    factory( G );
   }
-}(function($) {
-
+}( function( $ ) {
   var _ = $._;
 
-  $.boiler('tabs', {
+  $.boiler( 'tabs', {
     defaults: {
       /**
        * Whether to use hash's in the url to control the tab
@@ -66,6 +65,7 @@ A Gemini plugin for tabs.
        * @default false
        */
       hash: false,
+
       /**
        * The callback to run when the tab changes
        *
@@ -74,6 +74,7 @@ A Gemini plugin for tabs.
        * @default false
        */
       onChange: false,
+
       /**
        * The state to add to the active tab link
        *
@@ -82,6 +83,7 @@ A Gemini plugin for tabs.
        * @default 'is-active'
        */
       tabState: 'is-active',
+
       /**
        * The state to add to the active tab
        *
@@ -90,6 +92,7 @@ A Gemini plugin for tabs.
        * @default 'is-active'
        */
       targetState: 'is-active',
+
       /**
        * Whether to change to a select dropdown on small screens
        *
@@ -113,49 +116,48 @@ A Gemini plugin for tabs.
 
     active: '',
 
-    init: function(){
+    init: function() {
       var plugin = this;
 
-      //Cache anchors
-      plugin.$anchors = plugin.$el.find('a');
+      // Cache anchors
+      plugin.$anchors = plugin.$el.find( 'a' );
 
-      //Cache tabs
-      plugin.$anchors.each(function(){
-
-        var $this = $(this),
-          target = $this.attr('href');
+      // Cache tabs
+      plugin.$anchors.each( function() {
+        var $this = $( this );
+        var target = $this.attr( 'href' );
 
         plugin.tabs[target] = {
-          $tab: $this,
-          $target: $(target)
+          $tab:    $this,
+          $target: $( target )
         };
       });
 
-      //Initiate responsiveness
-      if(plugin.settings.responsive) plugin._responsiveInit();
+      // Initiate responsiveness
+      if ( plugin.settings.responsive ) plugin._responsiveInit();
 
-      //Bind click events
-      plugin.$el.on('click', 'a', function(e){
+      // Bind click events
+      plugin.$el.on( 'click', 'a', function( e ) {
         e.preventDefault();
 
-        var target = $(this).attr('href');
-        plugin.open(target);
+        var target = $( this ).attr( 'href' );
+        plugin.open( target );
       });
 
-      //Find the currently active anchor based on markup
+      // Find the currently active anchor based on markup
       var active = $(
-        plugin.$anchors.filter('.' + plugin.settings.tabState)[0] ||
+        plugin.$anchors.filter( '.' + plugin.settings.tabState )[0] ||
         plugin.$anchors[0]
-      ).attr('href');
+      ).attr( 'href' );
 
-      //Activate hashed tab
-      if(_.has(plugin.tabs, window.location.hash)){
-        plugin._deactivate(active);
+      // Activate hashed tab
+      if ( _.has( plugin.tabs, window.location.hash )) {
+        plugin._deactivate( active );
         active = window.location.hash;
       }
 
-      //Activate the current item and the content
-      plugin.open(active);
+      // Activate the current item and the content
+      plugin.open( active );
     },
 
     /**
@@ -166,26 +168,26 @@ A Gemini plugin for tabs.
      * @name gemini.tabs#_getSelect
      * @return {element} Returns a jQuery element
     **/
-    _getSelect: function(){
+    _getSelect: function() {
       var plugin = this;
 
-      var $select = $('<select/>');
+      var $select = $( '<select/>' );
 
-      _.each(plugin.tabs, function(tab, target){
-        //Create text (remove a11y)
-        var text = tab.$tab.clone().find('.a11y').remove().end().text();
+      _.each( plugin.tabs, function( tab, target ) {
+        // Create text (remove a11y)
+        var text = tab.$tab.clone().find( '.a11y' ).remove().end().text();
 
         $select.append(
-          $('<option />')
-            .val(target)
-            .text(text)
-            .prop('selected', tab.$tab.hasClass(plugin.settings.tabState))
+          $( '<option />' )
+            .val( target )
+            .text( text )
+            .prop( 'selected', tab.$tab.hasClass( plugin.settings.tabState ))
         );
       });
 
-      return $select.wrap('<div class="select select--tab"/>')
+      return $select.wrap( '<div class="select select--tab"/>' )
                     .parent()
-                    .wrap('<div class="w-select--tab"/>')
+                    .wrap( '<div class="w-select--tab"/>' )
                     .parent();
     },
 
@@ -196,39 +198,39 @@ A Gemini plugin for tabs.
      * @method
      * @name gemini.tabs#_responsiveInit
     **/
-    _responsiveInit: function(){
+    _responsiveInit: function() {
       var plugin = this;
 
       // Build fallback select
       plugin.$select = plugin._getSelect();
 
       // Add wrapper
-      plugin.$wrapper = plugin.$el.wrap('<span/>').parent();
+      plugin.$wrapper = plugin.$el.wrap( '<span/>' ).parent();
 
       // Add select box
-      plugin.$wrapper.append(plugin.$select);
+      plugin.$wrapper.append( plugin.$select );
 
       // Add event to change tabs
-      plugin.$select.find('select').on('change', function(){
-        plugin.open($(this).val());
+      plugin.$select.find( 'select' ).on( 'change', function() {
+        plugin.open( $( this ).val());
       });
 
-      var adjustTabs = function(screen){
-        if(screen == 'small'){
+      var adjustTabs = function( screen ) {
+        if ( screen === 'small' ) {
           plugin.$select.show();
           plugin.$el.hide();
-        }else{
+        } else {
           plugin.$el.show();
           plugin.$select.hide();
         }
       };
 
       // Init
-      adjustTabs($.respond.getScreen());
+      adjustTabs( $.respond.getScreen());
 
       // Add listener
-      $.respond.bind('resize', function(e, screen){
-        adjustTabs(screen);
+      $.respond.bind( 'resize', function( e, screen ) {
+        adjustTabs( screen );
       });
     },
 
@@ -239,12 +241,12 @@ A Gemini plugin for tabs.
      * @name gemini.tabs#open
      * @param {string} target The id of the tab (``#example``)
     **/
-    open: function(target){
+    open: function( target ) {
       var plugin = this;
 
-      if(target!=plugin.active && _.has(plugin.tabs, target)){
-        plugin._deactivate(plugin.active);
-        plugin._activate(target);
+      if ( target !== plugin.active && _.has( plugin.tabs, target )) {
+        plugin._deactivate( plugin.active );
+        plugin._activate( target );
       }
     },
 
@@ -256,30 +258,30 @@ A Gemini plugin for tabs.
      * @name gemini.tabs#_activate
      * @param {string} target The id of the tab
     **/
-    _activate: function(target){
+    _activate: function( target ) {
       var plugin = this;
 
-      if(_.has(plugin.tabs, target)){
+      if ( _.has( plugin.tabs, target )) {
         var tab = plugin.tabs[target];
 
-        tab.$tab.addClass(plugin.settings.tabState);
-        tab.$target.addClass(plugin.settings.targetState);
+        tab.$tab.addClass( plugin.settings.tabState );
+        tab.$target.addClass( plugin.settings.targetState );
         tab.$target.show();
         plugin.active = target;
 
-        if (plugin.settings.hash) {
+        if ( plugin.settings.hash ) {
           // Ensure that the browser doesn't scroll to the hash
-          tab.$target.attr('id', '');
+          tab.$target.attr( 'id', '' );
           window.location.hash = target;
-          tab.$target.attr('id', target.substring(1));
+          tab.$target.attr( 'id', target.substring( 1 ));
         }
 
-        if(plugin.settings.responsive) {
-          plugin.$select.find('select').val(target);
+        if ( plugin.settings.responsive ) {
+          plugin.$select.find( 'select' ).val( target );
         }
 
-        if(plugin.settings.onChange) {
-          plugin.settings.onChange.call(plugin);
+        if ( plugin.settings.onChange ) {
+          plugin.settings.onChange.call( plugin );
         }
       }
     },
@@ -292,12 +294,12 @@ A Gemini plugin for tabs.
      * @name gemini.tabs#_deactivate
      * @param {string} target The id of the tab
     **/
-    _deactivate: function(target){
+    _deactivate: function( target ) {
       var plugin = this;
 
-      if(_.has(plugin.tabs, target)){
-        plugin.tabs[target].$tab.removeClass(plugin.settings.tabState);
-        plugin.tabs[target].$target.removeClass(plugin.settings.targetState);
+      if ( _.has( plugin.tabs, target )) {
+        plugin.tabs[target].$tab.removeClass( plugin.settings.tabState );
+        plugin.tabs[target].$target.removeClass( plugin.settings.targetState );
         plugin.tabs[target].$target.hide();
       }
     }
@@ -306,5 +308,4 @@ A Gemini plugin for tabs.
   // Return the jquery object
   // This way you don't need to require both jquery and the plugin
   return $;
-
 }));
