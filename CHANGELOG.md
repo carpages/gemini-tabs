@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.2.1
+
+  - Remove jshint in favour of eslint with custom ruleset
+  - Bump travis-ci node version
+  - Fix CommonJS require statement to require the correct gemini-loader module
+
 ## v0.2.0
 
-    - Add UMD support
+  - Add UMD support
