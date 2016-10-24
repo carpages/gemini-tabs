@@ -45,7 +45,7 @@ A Gemini plugin for tabs.
   } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
     module.exports = factory(
-      require( 'gemini' ),
+      require( 'gemini-loader' ),
       require( 'gemini.respond' )
     );
   } else {
