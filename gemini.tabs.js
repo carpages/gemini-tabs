@@ -46,7 +46,7 @@ A Gemini plugin for tabs.
     // Node/CommonJS
     module.exports = factory(
       require( 'gemini-loader' ),
-      require( 'gemini.respond' )
+      require( 'gemini-respond' )
     );
   } else {
     // Browser globals
