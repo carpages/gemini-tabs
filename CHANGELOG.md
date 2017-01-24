@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.2
+
+  - Fix CommonJS require statement to require gemini-respond module
+
 ## v0.2.1
 
   - Remove jshint in favour of eslint with custom ruleset
