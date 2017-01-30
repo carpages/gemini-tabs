@@ -260,6 +260,7 @@ A Gemini plugin for tabs.
     **/
     _activate: function( target ) {
       var plugin = this;
+      var prevTab = plugin.active;
 
       if ( _.has( plugin.tabs, target )) {
         var tab = plugin.tabs[target];
@@ -281,7 +282,7 @@ A Gemini plugin for tabs.
         }
 
         if ( plugin.settings.onChange ) {
-          plugin.settings.onChange.call( plugin );
+          plugin.settings.onChange.call( plugin, prevTab );
         }
       }
     },
