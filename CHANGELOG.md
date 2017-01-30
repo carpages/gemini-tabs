@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.3.0
+
+  - Pass previously active tab to onChange function
+
 ## v0.2.2
 
   - Fix CommonJS require statement to require gemini-respond module
