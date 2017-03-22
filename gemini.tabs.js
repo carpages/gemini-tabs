@@ -128,7 +128,7 @@ A Gemini plugin for tabs.
         var target = $this.attr( 'href' );
 
         plugin.tabs[target] = {
-          $tab:    $this,
+          $tab: $this,
           $target: $( target )
         };
       });
