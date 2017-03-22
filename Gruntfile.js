@@ -1,5 +1,7 @@
 'use strict';
 
+var compassImporter = require( 'compass-importer' );
+
 module.exports = function( grunt ) {
   // Load all grunt tasks
   require( 'load-grunt-tasks' )( grunt );
@@ -41,14 +43,16 @@ module.exports = function( grunt ) {
         }
       }
     },
-    compass: {
+    sass: {
       options: {
-        sassDir: 'test',
-        cssDir:  'test'
+        importer: compassImporter
       },
       dist: {
         options: {
           outputStyle: 'expanded'
+        },
+        files: {
+          'test/gemini-tabs.test.css': 'test/gemini-tabs.test.scss'
         }
       }
     },
@@ -145,6 +149,6 @@ module.exports = function( grunt ) {
   });
 
   // Default task.
-  grunt.registerTask( 'default', [ 'compass', 'eslint'/*, 'connect', 'qunit' */ ]);
+  grunt.registerTask( 'default', [ 'sass', 'eslint'/*, 'connect', 'qunit' */ ]);
   grunt.registerTask( 'ci', [ 'default'/*, 'saucelabs-qunit' */ ]);
 };

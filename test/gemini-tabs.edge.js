@@ -13,5 +13,9 @@ requirejs.config({
 });
 
 require([ 'gemini', 'gemini.tabs' ], function( G ) {
-  G( '#js-tabs' ).tabs();
+  G( '#js-tabs' ).tabs({
+    onChange: function( prevTab ) {
+      console.log({ activeTab: this.active, prevTab: prevTab });
+    }
+  });
 });
