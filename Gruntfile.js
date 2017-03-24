@@ -46,7 +46,8 @@ module.exports = function( grunt ) {
     },
     sass: {
       options: {
-        importer: compassImporter
+        importer: compassImporter,
+        includePaths: [ 'bower_components' ]
       },
       dist: {
         options: {
