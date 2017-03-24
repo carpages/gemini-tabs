@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.3.1
+
+  - Drop dependency on Ruby
+  - Use Carpages eslint config
+
 ## v0.3.0
 
   - Pass previously active tab to onChange function
