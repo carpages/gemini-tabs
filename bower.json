@@ -1,7 +1,10 @@
 {
   "name": "gemini-tabs",
   "authors": [
-    {"name": "Matt Rose", "email": "matt@mattrose.ca"}
+    {
+      "name": "Matt Rose",
+      "email": "matt@mattrose.ca"
+    }
   ],
   "main": [
     "gemini.tabs.js",
@@ -9,7 +12,7 @@
   ],
   "ignore": [],
   "dependencies": {
-    "gemini-loader": "~0",
-    "gemini-respond": "~0"
+    "gemini-loader": "0.3.x",
+    "gemini-respond": "0.1.x"
   }
 }
