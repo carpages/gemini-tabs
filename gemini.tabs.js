@@ -38,21 +38,15 @@ A Gemini plugin for tabs.
 ( function( factory ) {
   if ( typeof define === 'function' && define.amd ) {
     // AMD. Register as an anonymous module.
-    define([
-      'gemini',
-      'gemini.respond'
-    ], factory );
+    define([ 'gemini', 'gemini.respond' ], factory );
   } else if ( typeof exports === 'object' ) {
     // Node/CommonJS
-    module.exports = factory(
-      require( 'gemini-loader' ),
-      require( 'gemini-respond' )
-    );
+    module.exports = factory( require( 'gemini-loader' ), require( 'gemini-respond' ));
   } else {
     // Browser globals
     factory( G );
   }
-}( function( $ ) {
+})( function( $ ) {
   var _ = $._;
 
   $.boiler( 'tabs', {
@@ -146,8 +140,7 @@ A Gemini plugin for tabs.
 
       // Find the currently active anchor based on markup
       var active = $(
-        plugin.$anchors.filter( '.' + plugin.settings.tabState )[0] ||
-        plugin.$anchors[0]
+        plugin.$anchors.filter( '.' + plugin.settings.tabState )[0] || plugin.$anchors[0]
       ).attr( 'href' );
 
       // Activate hashed tab
@@ -167,7 +160,7 @@ A Gemini plugin for tabs.
      * @method
      * @name gemini.tabs#_getSelect
      * @return {element} Returns a jQuery element
-    **/
+     **/
     _getSelect: function() {
       var plugin = this;
 
@@ -175,7 +168,12 @@ A Gemini plugin for tabs.
 
       _.each( plugin.tabs, function( tab, target ) {
         // Create text (remove a11y)
-        var text = tab.$tab.clone().find( '.a11y' ).remove().end().text();
+        var text = tab.$tab
+          .clone()
+          .find( '.a11y' )
+          .remove()
+          .end()
+          .text();
 
         $select.append(
           $( '<option />' )
@@ -185,10 +183,11 @@ A Gemini plugin for tabs.
         );
       });
 
-      return $select.wrap( '<div class="select select--tab"/>' )
-                    .parent()
-                    .wrap( '<div class="w-select--tab"/>' )
-                    .parent();
+      return $select
+        .wrap( '<div class="select select--tab"/>' )
+        .parent()
+        .wrap( '<div class="w-select--tab"/>' )
+        .parent();
     },
 
     /**
@@ -197,7 +196,7 @@ A Gemini plugin for tabs.
      * @private
      * @method
      * @name gemini.tabs#_responsiveInit
-    **/
+     **/
     _responsiveInit: function() {
       var plugin = this;
 
@@ -240,7 +239,7 @@ A Gemini plugin for tabs.
      * @method
      * @name gemini.tabs#open
      * @param {string} target The id of the tab (``#example``)
-    **/
+     **/
     open: function( target ) {
       var plugin = this;
 
@@ -257,7 +256,7 @@ A Gemini plugin for tabs.
      * @method
      * @name gemini.tabs#_activate
      * @param {string} target The id of the tab
-    **/
+     **/
     _activate: function( target ) {
       var plugin = this;
       var prevTab = plugin.active;
@@ -294,7 +293,7 @@ A Gemini plugin for tabs.
      * @method
      * @name gemini.tabs#_deactivate
      * @param {string} target The id of the tab
-    **/
+     **/
     _deactivate: function( target ) {
       var plugin = this;
 
@@ -309,4 +308,4 @@ A Gemini plugin for tabs.
   // Return the jquery object
   // This way you don't need to require both jquery and the plugin
   return $;
-}));
+});
